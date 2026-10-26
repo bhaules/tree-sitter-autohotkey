@@ -5,7 +5,7 @@
       "camelcase": "AutoHotkey",
       "scope": "source.ahk",
       "path": ".",
-      "file-types": ["ahk"],
+      "file-types": ["ahk", "ahk2"],
       "highlights": "languages/autohotkey/highlights.scm",
       "injections": "languages/autohotkey/injections.scm"
     }
@@ -20,7 +20,7 @@
       }
     ],
     "links": {
-      "repository": "https://github.com/alfredomtx/tree-sitter-autohotkey"
+      "repository": "https://github.com/bhaules/tree-sitter-autohotkey"
     }
   }
 }

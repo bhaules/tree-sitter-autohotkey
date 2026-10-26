@@ -1,6 +1,6 @@
 name = "AutoHotkey"
 grammar = "autohotkey"
-path_suffixes = ["ahk"]
+path_suffixes = ["ahk", "ahk2"]
 line_comments = [";"]
 block_comment = ["/*", "*/"]
 auto_indent_using_last_non_empty_line = true
