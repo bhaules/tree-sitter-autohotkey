@@ -262,7 +262,10 @@ module.exports = grammar({
     class_property: $ => seq(
       optional('static'),
       field('name', $.identifier),
-      optional(seq(':=', field('value', $._expression)))
+      optional(choice(
+        seq(':=', field('value', $._expression)),
+        seq('=>', field('body', $._expression))
+      ))
     ),
 
     function_call: $ => prec.dynamic(5, seq(

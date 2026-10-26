@@ -1,4 +1,4 @@
-﻿; Test file for AHK v2 class definition syntax
+; Test file for AHK v2 class definition syntax
 
 ; Simple class
 class Animal {
@@ -134,7 +134,7 @@ class Config {
     }
 
     static GetInstance() {
-        if !IsSet(Config.instance)
+        if (!IsSet(Config.instance))
             Config.instance := Config()
         return Config.instance
     }
