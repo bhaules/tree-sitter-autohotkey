@@ -100,16 +100,16 @@ x := A_ScriptDir
     right: (identifier)))
 
 ================================================================================
-Builtin in command variable reference
+Builtin in function call
 ================================================================================
 
-MsgBox, %A_ScriptDir%
+MsgBox(A_ScriptDir)
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (command
+  (function_call
     name: (identifier)
-    (command_arguments
-      (variable_ref
-        (identifier)))))
+    (argument_list
+      (identifier))))
+

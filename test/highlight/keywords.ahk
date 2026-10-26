@@ -1,4 +1,4 @@
-; if/else
+﻿; if/else
 if (x) {
 ; <- keyword
 }
@@ -31,8 +31,9 @@ for item in collection {
 ; try/catch/finally
 try {
 ; <- keyword
-} catch e {
+} catch Error as e {
 ; ^^^^^ keyword
+;              ^^ keyword
 } finally {
 ; ^^^^^^^ keyword
 }
@@ -51,7 +52,7 @@ continue
 ; <- keyword
 
 ; throw
-throw "error"
+throw Error("oops")
 ; <- keyword
 
 ; class keywords
@@ -73,3 +74,7 @@ class Example {
 ;   ^^^^^^ keyword
     }
 }
+
+; unset keyword
+x := unset
+;    ^^^^^ keyword

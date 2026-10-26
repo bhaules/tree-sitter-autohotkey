@@ -28,9 +28,6 @@ A_ComSpec
 Clipboard
 ; <- variable.special
 
-ErrorLevel
-; <- variable.special
-
 ; Properties on objects
 obj.property
 ;   ^^^^^^^^ property
@@ -41,24 +38,24 @@ obj.prop := 10
 obj.nested.prop
 ;          ^^^^ property
 
-; this and base keywords in context
+; this and super keywords in context
 x := this
 ;    ^^^^ variable.special
 
-x := base
-;    ^^^^ variable.special
+x := super
+;    ^^^^^ variable.special
 
 this.value := 1
 ; <- variable.special
 ;    ^^^^^ property
 
-base.__New()
+super.__New()
 ; <- variable.special
 
 ; Exception parameter
 try {
-    throw "error"
-} catch e {
-;       ^ variable.parameter
+    throw Error("error")
+} catch Error as e {
+;                ^ variable.parameter
     x := e
 }

@@ -9,9 +9,6 @@
 ; Strings
 (string) @string
 
-; Continuation sections - multiline string content
-(continuation_section) @string
-
 ; Escape sequences within strings
 (escape_sequence) @string.escape
 
@@ -21,42 +18,45 @@
 ; Keywords
 (keyword) @keyword
 
-; Parameter modifier (ByRef)
-(parameter_modifier) @keyword
+; Parameter modifier (&byref)
+(parameter_modifier) @operator
 
-; New expression
-(new_expression "new" @keyword)
-
-; Return statement
-(return_statement) @keyword
+[
+  "if"
+  "else"
+  "while"
+  "loop"
+  "for"
+  "in"
+  "try"
+  "catch"
+  "finally"
+  "switch"
+  "case"
+  "default"
+  "return"
+  "throw"
+  "as"
+  "class"
+  "extends"
+  "static"
+  "and"
+  "or"
+  "not"
+] @keyword
 
 ; Boolean literals
 (boolean) @constant.builtin
 
-; Control flow keywords
-; Note: if, else, while, loop, for, in, try, catch, finally are case-insensitive regex patterns
-; in the grammar and cannot be matched by literal strings in queries.
-; We highlight the entire statement node instead.
-(if_statement) @keyword
-(else_clause) @keyword
-(while_statement) @keyword
-(loop_statement) @keyword
-(loop_statement "," @punctuation.delimiter)
+; Control flow
 (loop_type) @keyword
-(for_statement) @keyword
-(try_statement) @keyword
-(catch_clause) @keyword
+(catch_clause type: (identifier) @type)
 (catch_clause exception: (identifier) @variable.parameter)
-(finally_clause) @keyword
 
 ; Switch statements
-; Note: switch, case, default are case-insensitive regex patterns
-(switch_statement) @keyword
 (switch_statement "{" @punctuation.bracket)
 (switch_statement "}" @punctuation.bracket)
-(case_clause) @keyword
 (case_clause ":" @punctuation.delimiter)
-(default_clause) @keyword
 (default_clause ":" @punctuation.delimiter)
 
 ; Statement blocks
@@ -67,10 +67,7 @@
 (parenthesized_expression "(" @punctuation.bracket)
 (parenthesized_expression ")" @punctuation.bracket)
 
-; Operators - match in all contexts they appear
-
-; Standalone operator rule
-(operator) @operator
+; Operators
 
 ; Assignment operators
 (assignment_expression ":=" @operator)
@@ -79,12 +76,14 @@
 (assignment_expression "*=" @operator)
 (assignment_expression "/=" @operator)
 (assignment_expression ".=" @operator)
+(assignment_expression "||=" @operator)
+(assignment_expression "&&=" @operator)
+(assignment_expression "??=" @operator)
 
 ; Binary operators - Logical
 (binary_expression "||" @operator)
 (binary_expression "&&" @operator)
-; Note: 'or', 'and', 'not' are case-insensitive regex patterns in the grammar
-; and cannot be matched by literal string in queries
+(binary_expression "??" @operator)
 
 ; Binary operators - Bitwise
 (binary_expression "|" @operator)
@@ -97,7 +96,6 @@
 (binary_expression "=" @operator)
 (binary_expression "==" @operator)
 (binary_expression "!=" @operator)
-(binary_expression "<>" @operator)
 
 ; Binary operators - Comparison
 (binary_expression "<" @operator)
@@ -118,13 +116,21 @@
 (binary_expression "." @operator)
 
 ; Unary operators
+(unary_expression "&" @operator)
 (unary_expression "!" @operator)
 (unary_expression "~" @operator)
 (unary_expression "-" @operator)
+(unary_expression "+" @operator)
 
 ; Ternary operator
 (ternary_expression "?" @operator)
 (ternary_expression ":" @operator)
+
+; Fat-arrow functions
+(fat_arrow_function "=>" @operator)
+(fat_arrow_function name: (identifier) @function)
+(fat_arrow_function "(" @punctuation.bracket)
+(fat_arrow_function ")" @punctuation.bracket)
 
 ; Hotkeys
 (hotkey) @keyword
@@ -141,20 +147,15 @@
 (directive name: (identifier) @attribute)
 (directive_arguments) @string.special
 
-; Conditional directives (#if)
-; The #if keyword is highlighted as attribute, inner expressions use standard rules
+; Conditional directives (#HotIf / #if)
 (if_directive) @attribute
-
-; Window conditional directives (#IfWinActive, #IfWinExist, etc.)
-(if_win_directive) @attribute
-(if_win_directive (if_win_type) @attribute)
-(if_win_directive (if_win_title) @string.special)
-(if_win_directive (if_win_title (string) @string))
-(if_win_directive (if_win_text) @string.special)
 
 ; Functions
 (function_definition name: (identifier) @function)
 (function_call name: (identifier) @function)
+
+; Fat-arrow function definitions (anonymous closures)
+; When used as an expression, the parens highlight as punctuation
 
 ; Member expressions - property access
 (member_expression property: (identifier) @property)
@@ -169,122 +170,80 @@
 (member_expression object: (identifier) @type
  (#match? @type "^_?[A-Z]"))
 
-; New expression - highlight class names as types (after member_expression to override @property)
-(new_expression class: (identifier) @type)
-(new_expression class: (member_expression property: (identifier) @type))
-
-; Command names (identifier in command position gets highlighted as function)
-(command name: (identifier) @function)
-
-; if_command names (identifier in if_command position gets highlighted as function)
-(if_command name: (identifier) @function)
-
-; Built-in commands (known AHK commands highlighted as function.builtin via #match?)
-; GUI/Dialog commands
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(MsgBox|InputBox|ToolTip|TrayTip|Progress|Gui|GuiControl|GuiControlGet|Menu)$"))
-
-; Input/Output commands
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(Send|SendInput|SendRaw|SendEvent|SendPlay|SendLevel|Click|MouseClick|MouseClickDrag|MouseGetPos|MouseMove|KeyWait|Input|Hotkey)$"))
-
-; Flow control commands
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(Sleep|SetTimer|Pause|Suspend|Thread|Run|RunWait|RunAs|Reload|ExitApp|Exit|Shutdown)$"))
-
-; Standalone flow control (highlighted as keywords like return/break)
+; Standalone flow control and keywords
 ((identifier) @keyword
- (#match? @keyword "^(?i)(Reload|Exit|ExitApp|Pause|Suspend|Critical|Thread)$"))
+ (#match? @keyword "^(?i)(Reload|Exit|ExitApp|Pause|Suspend|unset)$"))
 
-; Goto and Gosub commands (highlighted as keywords for consistency with break/continue/return)
-((command name: (identifier) @keyword)
+; Built-in functions (v2 - everything is a function)
+; GUI and dialog
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(MsgBox|InputBox|ToolTip|TrayTip|Progress|Gui|GuiCtrlFromHwnd|GuiFromHwnd)$"))
+
+; Input/Output
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(Send|SendInput|SendRaw|SendEvent|SendPlay|SendLevel|SendText|Click|MouseClick|MouseClickDrag|MouseGetPos|MouseMove|KeyWait|InputHook|Hotkey|HotIf|HotIfWinActive|HotIfWinExist|HotIfWinNotActive|HotIfWinNotExist|HotString)$"))
+
+; Flow control
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(Sleep|SetTimer|Pause|Suspend|Thread|Run|RunWait|RunAs|Reload|ExitApp|Exit|Shutdown|OnExit|OnError|OnMessage|CallbackCreate)$"))
+
+; Window management
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(WinActivate|WinActivateBottom|WinWait|WinWaitActive|WinWaitClose|WinClose|WinKill|WinMinimize|WinMaximize|WinRestore|WinMinimizeAll|WinMinimizeAllUndo|WinHide|WinShow|WinMove|WinSetTitle|WinMenuSelectItem|WinSetTransparent|WinSetTransColor|WinSetExStyle|WinSetStyle|WinSetAlwaysOnTop|WinSetEnabled|WinSetRegion|WinRedraw)$"))
+
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(WinGetID|WinGetIDLast|WinGetPID|WinGetProcessName|WinGetProcessPath|WinGetCount|WinGetList|WinGetMinMax|WinGetControls|WinGetControlsHwnd|WinGetPos|WinGetClientPos|WinGetTitle|WinGetClass|WinGetText|WinGetStyle|WinGetExStyle|WinGetTransparent|WinGetTransColor)$"))
+
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(WinExist|WinActive)$"))
+
+; Control
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(ControlClick|ControlFocus|ControlGetChecked|ControlGetChoice|ControlGetEnabled|ControlGetExStyle|ControlGetFocus|ControlGetHwnd|ControlGetIndex|ControlGetItems|ControlGetPos|ControlGetStyle|ControlGetText|ControlGetVisible|ControlHide|ControlHideDropDown|ControlMove|ControlSend|ControlSendText|ControlSetChecked|ControlSetChoice|ControlSetEnabled|ControlSetExStyle|ControlSetStyle|ControlSetText|ControlSetVisible|ControlShow|ControlShowDropDown)$"))
+
+; File operations
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(FileRead|FileAppend|FileDelete|FileCopy|FileMove|FileCopyDir|FileMoveDir|FileCreateDir|FileRemoveDir|FileCreateShortcut|FileGetShortcut|FileGetAttrib|FileSetAttrib|FileGetSize|FileGetTime|FileSetTime|FileGetVersion|FileSelect|DirSelect|FileRecycle|FileRecycleEmpty|FileEncoding|FileOpen|FileGetShortcut)$"))
+
+; Registry and INI
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(RegRead|RegWrite|RegDelete|RegDeleteKey|RegCreateKey|IniRead|IniWrite|IniDelete)$"))
+
+; String functions (v2 - functions not commands)
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(StrLen|SubStr|InStr|RegExMatch|RegExReplace|StrReplace|StrSplit|StrLower|StrUpper|StrTitle|Trim|LTrim|RTrim|Format|FormatTime|Number|Integer|Float|String|Chr|Ord|Asc)$"))
+
+; Math functions
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(Abs|Ceil|Floor|Round|Mod|Sqrt|Sin|Cos|Tan|ASin|ACos|ATan|Log|Ln|Max|Min|Random)$"))
+
+; Object/Array functions
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(Type|IsSet|IsObject|HasBase|HasMethod|HasProp|ObjAddRef|ObjRelease|ObjGetBase|ObjSetBase|ObjGetCapacity|ObjSetCapacity|ObjOwnPropCount|ObjRawGet|ObjRawSet|ObjBindMethod|Array|Map|Object|Buffer|Error|OSError|MemoryError|TimeoutError|TypeError|ValueError|UnsetError|UnsetItemError|PropertyError|MethodError|IndexError|KeyError|MemberError|TargetError|ZeroDivisionError)$"))
+
+; COM and DLL
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(DllCall|ComCall|ComObject|ComObjActive|ComObjCreate|ComObjConnect|ComObjFlags|ComObjFromPtr|ComObjGet|ComObjQuery|ComObjType|ComObjValue|NumGet|NumPut|StrGet|StrPut|VarSetStrCapacity)$"))
+
+; Misc
+((function_call name: (identifier) @function.builtin)
+ (#match? @function.builtin "^(?i)(DriveGetCapacity|DriveGetFileSystem|DriveGetLabel|DriveGetList|DriveGetSerial|DriveGetStatus|DriveGetStatusCD|DriveGetType|DriveSetLabel|DriveEject|PostMessage|SendMessage|ProcessClose|ProcessExist|ProcessGetName|ProcessGetParent|ProcessGetPath|ProcessSetPriority|ProcessWait|ProcessWaitClose|SysGet|SysGetIPAddresses|Shutdown|BlockInput|GroupActivate|GroupAdd|GroupClose|GroupDeactivate|KeyHistory|ListHotkeys|ListLines|ListVars|ClipWait|A_Clipboard|EnvGet|EnvSet|SoundBeep|SoundGetInterface|SoundGetMute|SoundGetName|SoundGetVolume|SoundPlay|SoundSetMute|SoundSetVolume)$"))
+
+; Goto command (keyword-like)
+((function_call name: (identifier) @keyword)
+ (#match? @keyword "^(?i)(Goto|Gosub)$"))
+
+; Standalone Goto
+((identifier) @keyword
  (#match? @keyword "^(?i)(Goto|Gosub)$"))
 
 ; Standalone debug commands (highlighted as function.builtin)
 ((identifier) @function.builtin
  (#match? @function.builtin "^(?i)(KeyHistory|ListHotkeys|ListLines|ListVars)$"))
 
-; Window management commands
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(WinActivate|WinActivateBottom|WinWait|WinWaitActive|WinWaitClose|WinClose|WinKill|WinMinimize|WinMaximize|WinRestore)$"))
-
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(WinMinimizeAll|WinMinimizeAllUndo|WinHide|WinShow|WinMove|WinSet|WinSetTitle|WinMenuSelectItem)$"))
-
-; Control commands
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(Control|ControlClick|ControlFocus|ControlGet|ControlGetFocus|ControlGetPos|ControlGetText|ControlMove|ControlSend|ControlSendRaw|ControlSetText)$"))
-
-; File operations commands
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(FileRead|FileReadLine|FileAppend|FileDelete|FileCopy|FileMove|FileCopyDir|FileMoveDir|FileCreateDir|FileRemoveDir)$"))
-
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(FileCreateShortcut|FileGetShortcut|FileGetAttrib|FileSetAttrib|FileGetSize|FileGetTime|FileGetVersion|FileSetTime)$"))
-
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(FileSelectFile|FileSelectFolder|FileRecycle|FileRecycleEmpty)$"))
-
-; Registry and INI commands
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(RegRead|RegWrite|RegDelete|IniRead|IniWrite|IniDelete)$"))
-
-; String manipulation commands (legacy)
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(StringCaseSense|StringGetPos|StringLeft|StringRight|StringMid|StringLower|StringUpper|StringLen|StringReplace|StringSplit|StringTrimLeft|StringTrimRight)$"))
-
-; Legacy conditional commands (in regular command context - no block)
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(IfEqual|IfNotEqual|IfLess|IfLessOrEqual|IfGreater|IfGreaterOrEqual|IfExist|IfNotExist|IfInString|IfNotInString|IfMsgBox)$"))
-
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(IfWinExist|IfWinNotExist|IfWinActive|IfWinNotActive)$"))
-
-; Legacy conditional commands in if_command context (with block/else)
-((if_command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(IfEqual|IfNotEqual|IfLess|IfLessOrEqual|IfGreater|IfGreaterOrEqual|IfExist|IfNotExist|IfInString|IfNotInString|IfMsgBox)$"))
-
-((if_command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(IfWinExist|IfWinNotExist|IfWinActive|IfWinNotActive)$"))
-
-; Configuration commands
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(SetWorkingDir|CoordMode|SetFormat|SetBatchLines|SetDefaultMouseSpeed|SetWinDelay|SetControlDelay|SetKeyDelay|SetMouseDelay)$"))
-
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(SetTitleMatchMode|SetRegView|SetStoreCapsLockMode|SetCapsLockState|SetNumLockState|SetScrollLockState|AutoTrim|DetectHiddenWindows|DetectHiddenText)$"))
-
-; Sound commands
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(SoundBeep|SoundGet|SoundPlay|SoundSet)$"))
-
-; Group commands
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(GroupActivate|GroupAdd|GroupClose|GroupDeactivate)$"))
-
-; Other commands
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(BlockInput|Drive|DriveGet|DriveSpaceFree|Edit|KeyHistory|ListHotkeys|ListLines|ListVars)$"))
-
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(Process|Random|Sort|Transform|UrlDownloadToFile|ClipWait|EnvGet|EnvSet|EnvUpdate|FormatTime)$"))
-
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(SplitPath|StatusBarGetText|StatusBarWait|SysGet|WinGet|WinGetActiveStats|WinGetActiveTitle|WinGetClass|WinGetPos|WinGetText|WinGetTitle)$"))
-
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(PostMessage|SendMessage|OnMessage|DllCall|NumGet|NumPut|VarSetCapacity)$"))
-
-((command name: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(ComObjCreate|ComObjGet|ComObjConnect|ComObjError|ObjAddRef|ObjRelease|ObjBindMethod|ObjRawSet)$"))
-
-; Variable references in commands
+; Variable references %var%
 (variable_ref (identifier) @variable)
 (variable_ref "%" @punctuation.special)
-
-; Force expression - % symbol highlighted, sub-expressions via their own rules
-(force_expr_start) @operator
-; (identifiers, strings, operators, etc. inherit from expression highlighting)
 
 ; Built-in variables (via #match? - highlights identifiers matching A_* patterns)
 ; Script properties
@@ -309,14 +268,6 @@
 ((identifier) @variable.special
  (#match? @variable.special "^(?i)A_(TimeIdle|TimeIdlePhysical|TimeIdleKeyboard|TimeIdleMouse)$"))
 
-; GUI windows
-((identifier) @variable.special
- (#match? @variable.special "^(?i)A_(DefaultGui|DefaultListView|DefaultTreeView|Gui|GuiControl|GuiWidth|GuiHeight|GuiX|GuiY|GuiEvent|GuiControlEvent|EventInfo)$"))
-
-; Hotkeys, hotstrings, menus
-((identifier) @variable.special
- (#match? @variable.special "^(?i)A_(ThisMenuItem|ThisMenu|ThisMenuItemPos|ThisHotkey|PriorHotkey|PriorKey|TimeSinceThisHotkey|TimeSincePriorHotkey|EndChar)$"))
-
 ; OS and user info
 ((identifier) @variable.special
  (#match? @variable.special "^(?i)(A_ComSpec|ComSpec|A_Temp|A_OSType|A_OSVersion|A_Is64bitOS|A_PtrSize|A_Language|A_ComputerName|A_UserName|A_WinDir|A_ProgramFiles)$"))
@@ -329,7 +280,7 @@
 
 ; Special characters and misc
 ((identifier) @variable.special
- (#match? @variable.special "^(?i)(A_Space|A_Tab|A_Cursor|A_CaretX|A_CaretY|A_Clipboard|Clipboard|ClipboardAll|A_LastError|True|False|ErrorLevel)$"))
+ (#match? @variable.special "^(?i)(A_Space|A_Tab|A_Cursor|A_CaretX|A_CaretY|A_Clipboard|Clipboard|ClipboardAll|A_LastError|True|False)$"))
 
 ; Loop variables
 ((identifier) @variable.special
@@ -348,47 +299,6 @@
 ; Labels
 (label . (identifier) @label)
 
-; GUI action highlighting (e.g., MyGui:Add in Gui, MyGui:Add)
-(gui_action gui_name: (identifier) @string.special)
-
-; GUI target highlighting (e.g., MyGui: in GuiControl, MyGui:, Control)
-; This matches "identifier:," patterns that would otherwise parse as labels during injection
-(gui_target gui_name: (identifier) @string.special)
-
-; Drive letter highlighting (e.g., C: in DriveGet commands)
-; This matches "X:" patterns that would otherwise parse as labels during injection
-(drive_letter) @string.special
-
-; GUI options highlighting (e.g., MyGui:-Caption in Gui, MyGui:-Caption)
-; Structured node with gui_name and option fields
-(gui_options gui_name: (identifier) @string.special)
-(gui_options option: (gui_option_flag) @constant)
-
-; GUI options with space highlighting (e.g., MyGui: +Border in Gui, MyGui: +Border)
-(gui_options_spaced gui_name: (identifier) @string.special)
-(gui_options_spaced option: (gui_option_flag) @constant)
-
-; GUI option names as identifiers (for option names that follow gui_options - no space variant)
-((identifier) @constant
- (#match? @constant "^(?i)(AlwaysOnTop|Border|Caption|Delimiter|Disabled|DPIScale|Hwnd|Label|LastFound|LastFoundExist|MaximizeBox|MinimizeBox|MinSize|MaxSize|OwnDialogs|Owner|Parent|Resize|SysMenu|Theme|ToolWindow)$"))
-
-; GUI sub-commands - highlight known sub-commands as function.builtin
-((gui_action action: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)(Add|Show|Submit|Cancel|Hide|Destroy|Font|Color|Margin|Menu|Minimize|Maximize|Restore|Flash|Default|New)$"))
-
-; GUI action with space highlighting (e.g., MyGui: Color in Gui, MyGui: Color)
-(gui_action_spaced gui_name: (identifier) @string.special)
-
-; GUI sub-commands in spaced actions - highlight known sub-commands as function.builtin
-; Note: The action includes leading whitespace from the token
-((gui_action_spaced action: (identifier) @function.builtin)
- (#match? @function.builtin "^(?i)[ \\t]*(Add|Show|Submit|Cancel|Hide|Destroy|Font|Color|Margin|Menu|Minimize|Maximize|Restore|Flash|Default|New|Options)$"))
-
-; GUI option flags (+Option or -Option) - only highlight recognized options
-; Token includes +/- prefix, so regex accounts for it
-((gui_option_flag) @constant
- (#match? @constant "^(?i)[+-](AlwaysOnTop|Border|Caption|Delimiter|Disabled|DPIScale|Hwnd|Label|LastFound|LastFoundExist|MaximizeBox|MinimizeBox|MinSize|MaxSize|OwnDialogs|Owner|Parent|Resize|SysMenu|Theme|ToolWindow)$"))
-
 ; Arrays
 (array_literal "[" @punctuation.bracket)
 (array_literal "]" @punctuation.bracket)
@@ -404,26 +314,25 @@
 (object_property ":" @punctuation.delimiter)
 
 ; Class definitions
-; Note: class, extends, static are case-insensitive regex patterns
-(class_definition) @keyword
 (class_definition name: (identifier) @type)
 (class_definition parent: (identifier) @type)
 (class_definition "{" @punctuation.bracket)
 (class_definition "}" @punctuation.bracket)
 
 ; Method definitions
-(method_definition) @keyword
 (method_definition name: (identifier) @function.method)
 
 ; Special method names (constructor, destructor, meta-functions)
 (method_definition
   name: (identifier) @function.special
-  (#match? @function.special "^__(New|Delete|Get|Set|Call)$"))
+  (#match? @function.special "^__(New|Delete|Get|Set|Call|Item|Enum)$"))
 
 ; Class properties
-(class_property) @keyword
 (class_property name: (identifier) @property)
 
-; this and base keywords
+; this and super keywords
 (this_expression) @variable.special
-(base_expression) @variable.special
+(super_expression) @variable.special
+
+; Variadic parameter marker
+(parameter_variadic) @operator

@@ -160,48 +160,47 @@ obj := {1: "one", "two": 2, name: "test"}
         value: (string)))))
 
 ================================================================================
-New expression with function call
+Class instantiation
 ================================================================================
 
-instance := new MyClass()
+instance := MyClass()
 
 --------------------------------------------------------------------------------
 
 (source_file
   (assignment_expression
     left: (identifier)
-    right: (new_expression
-      class: (identifier))))
+    right: (function_call
+      name: (identifier))))
 
 ================================================================================
-New expression with arguments
+Class instantiation with arguments
 ================================================================================
 
-obj := new ClassName(arg1, arg2)
+obj := ClassName(arg1, arg2)
 
 --------------------------------------------------------------------------------
 
 (source_file
   (assignment_expression
     left: (identifier)
-    right: (new_expression
-      class: (identifier)
-      arguments: (argument_list
+    right: (function_call
+      name: (identifier)
+      (argument_list
         (identifier)
         (identifier)))))
 
 ================================================================================
-New expression with member expression
+Class instantiation with member expression
 ================================================================================
 
-obj := new Namespace.ClassName()
+obj := Namespace.ClassName()
 
 --------------------------------------------------------------------------------
 
 (source_file
   (assignment_expression
     left: (identifier)
-    right: (new_expression
-      class: (member_expression
-        object: (identifier)
-        property: (identifier)))))
+    right: (method_call
+      object: (identifier)
+      method: (identifier))))

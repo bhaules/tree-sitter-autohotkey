@@ -82,10 +82,10 @@ Multiple directives
     name: (identifier)))
 
 ================================================================================
-#if with simple condition
+#HotIf with simple condition
 ================================================================================
 
-#if (myVar)
+#HotIf (myVar)
 
 --------------------------------------------------------------------------------
 
@@ -95,10 +95,10 @@ Multiple directives
       (identifier))))
 
 ================================================================================
-#if with complex condition
+#HotIf with complex condition
 ================================================================================
 
-#if (var = true) && (WinActive("test"))
+#HotIf (var = true) && (WinActive("test"))
 
 --------------------------------------------------------------------------------
 
@@ -116,10 +116,10 @@ Multiple directives
             (string)))))))
 
 ================================================================================
-#if with single function call
+#HotIf with single function call
 ================================================================================
 
-#if WinActive("ahk_class Notepad")
+#HotIf WinActive("ahk_class Notepad")
 
 --------------------------------------------------------------------------------
 
@@ -131,10 +131,10 @@ Multiple directives
         (string)))))
 
 ================================================================================
-Empty #if (closes context)
+Empty #HotIf (closes context)
 ================================================================================
 
-#if
+#HotIf
 
 --------------------------------------------------------------------------------
 
@@ -142,12 +142,12 @@ Empty #if (closes context)
   (if_directive))
 
 ================================================================================
-Empty #if followed by label
+Empty #HotIf followed by label
 ================================================================================
 
-#if WinActive("test")
+#HotIf WinActive("test")
 return
-#if
+#HotIf
 
 MyLabel:
 return
@@ -167,40 +167,44 @@ return
   (return_statement))
 
 ================================================================================
-#IfWinActive with title
+#HotIf WinActive with title
 ================================================================================
 
-#IfWinActive ahk_class Notepad
+#HotIf WinActive("ahk_class Notepad")
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (if_win_directive
-    type: (if_win_type)
-    title: (if_win_title)))
+  (if_directive
+    condition: (function_call
+      name: (identifier)
+      (argument_list
+        (string)))))
 
 ================================================================================
-#IfWinExist with quoted title
+#HotIf WinExist with quoted title
 ================================================================================
 
-#IfWinExist "Untitled - Notepad"
+#HotIf WinExist("Untitled - Notepad")
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (if_win_directive
-    type: (if_win_type)
-    title: (if_win_title
-      (string))))
+  (if_directive
+    condition: (function_call
+      name: (identifier)
+      (argument_list
+        (string)))))
 
 ================================================================================
-Empty #IfWinActive (closes context)
+#Requires AutoHotkey directive
 ================================================================================
 
-#IfWinActive
+#Requires AutoHotkey v2.0
 
 --------------------------------------------------------------------------------
 
 (source_file
-  (if_win_directive
-    type: (if_win_type)))
+  (directive
+    name: (identifier)
+    arguments: (directive_arguments)))

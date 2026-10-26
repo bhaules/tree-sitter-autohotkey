@@ -127,10 +127,10 @@ x := this["key"]
       index: (string))))
 
 ================================================================================
-base_expression with index access
+super_expression with index access
 ================================================================================
 
-x := base["key"]
+x := super["key"]
 
 --------------------------------------------------------------------------------
 
@@ -138,7 +138,7 @@ x := base["key"]
   (assignment_expression
     left: (identifier)
     right: (index_expression
-      object: (base_expression)
+      object: (super_expression)
       index: (string))))
 
 ================================================================================

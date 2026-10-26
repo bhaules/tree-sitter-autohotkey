@@ -7,22 +7,39 @@ MyFunc(x, y) {
 ; <- function
 }
 
-; Function with ByRef parameter
-MyFunc(ByRef x) {
+; Function with by-reference parameter (v2: & instead of ByRef)
+MyFunc(&x) {
 ; <- function
-;      ^^^^^ keyword
+;      ^ operator
 }
 
-MyFunc(ByRef x, y, ByRef z) {
+MyFunc(&x, y, &z) {
 ; <- function
-;      ^^^^^ keyword
-;                  ^^^^^ keyword
+;      ^ operator
+;              ^ operator
 }
 
-MyFunc(ByRef x := 10) {
+MyFunc(&x := 10) {
 ; <- function
-;      ^^^^^ keyword
+;      ^ operator
 }
+
+; Function with variadic parameter
+MyFunc(args*) {
+; <- function
+;          ^ operator
+}
+
+; Fat-arrow functions
+double := (x) => x * 2
+;              ^^ operator
+
+add := (x, y) => x + y
+;             ^^ operator
+
+; Named fat-arrow
+greet(name) => "Hello " name
+; <- function
 
 ; Function calls
 result := MyFunc()
@@ -58,48 +75,6 @@ Database.connect()
 ; <- type
 ;        ^^^^^^^ function.method
 
-_Config.Settings.load()
-; <- type
-;       ^^^^^^^^ property
-;                ^^^^ function.method
-
-; Class references in member expressions
-_Logger.level
-; <- type
-;       ^^^^^ property
-
-Settings.theme
-; <- type
-;        ^^^^^ property
-
-; Non-class references stay as variable (lowercase start)
-myVar.property
-; <- !type
-;     ^^^^^^^^ property
-
-obj.method()
-; <- !type
-;   ^^^^^^ function.method
-
-; Builtin commands
-MsgBox, Hello
-; <- function.builtin
-
-Sleep, 1000
-; <- function.builtin
-
-Run, notepad.exe
-; <- function.builtin
-
-Send, Hello
-; <- function.builtin
-
-SetTimer, MyLabel, 1000
-; <- function.builtin
-
-Gosub, MyLabel
-; <- keyword
-
 ; Special methods in class
 class Example {
     __New() {
@@ -110,67 +85,22 @@ class Example {
 ;   ^^^^^^^^ function.special
     }
 
-    __Get(key) {
+    __Get(key, params) {
 ;   ^^^^^ function.special
     }
 
-    __Set(key, value) {
+    __Set(key, params, value) {
 ;   ^^^^^ function.special
     }
 
-    __Call(method, args*) {
+    __Call(method, params) {
 ;   ^^^^^^ function.special
     }
 }
 
-; GUI action (GuiName:SubCommand pattern)
-; When parsed at top level (e.g., via injection)
-MyGui:Add
-; <- string.special
-;     ^^^ function.builtin
-
-TestGui:Show
-; <- string.special
-;       ^^^^ function.builtin
-
-Window:Destroy
-; <- string.special
-;      ^^^^^^^ function.builtin
-
-; GUI options (GuiName:+/-Option pattern)
-MyGui:-Caption
-; <- string.special
-;      ^^^^^^^^ constant
-
-TestGui:+Border
-; <- string.special
-;        ^^^^^^^ constant
-
-; Standalone flow control (highlighted as keywords)
-Reload
+; Standalone flow control
+ExitApp
 ; <- keyword
 
 Exit
 ; <- keyword
-
-ExitApp
-; <- keyword
-
-Pause
-; <- keyword
-
-Suspend
-; <- keyword
-
-; Standalone debug commands (highlighted as function.builtin)
-KeyHistory
-; <- function.builtin
-
-ListHotkeys
-; <- function.builtin
-
-ListLines
-; <- function.builtin
-
-ListVars
-; <- function.builtin

@@ -13,7 +13,7 @@
   "metadata": {
     "version": "1.0.0",
     "license": "MIT",
-    "description": "Tree-sitter grammar for AutoHotkey v1",
+    "description": "Tree-sitter grammar for AutoHotkey v2",
     "authors": [
       {
         "name": "Alfredo Menezes"

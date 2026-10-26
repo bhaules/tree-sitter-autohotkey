@@ -1,10 +1,26 @@
 ================================================================================
-Simple continuation section
+Multiline string concatenation with dot
 ================================================================================
 
-var := (
-  line one
-  line two
+message := "This is line one"
+    . " and this is line two"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (assignment_expression
+    left: (identifier)
+    right: (binary_expression
+      left: (string)
+      right: (string))))
+
+================================================================================
+Multiline function call
+================================================================================
+
+result := MyFunc(
+    param1,
+    param2
 )
 
 --------------------------------------------------------------------------------
@@ -12,50 +28,8 @@ var := (
 (source_file
   (assignment_expression
     left: (identifier)
-    right: (continuation_section)))
-
-================================================================================
-Continuation with options
-================================================================================
-
-sql := (LTrim
-  SELECT *
-  FROM users
-)
-
---------------------------------------------------------------------------------
-
-(source_file
-  (assignment_expression
-    left: (identifier)
-    right: (continuation_section)))
-
-================================================================================
-Continuation with nested parens
-================================================================================
-
-query := (
-  SELECT (id, name)
-  FROM users
-)
-
---------------------------------------------------------------------------------
-
-(source_file
-  (assignment_expression
-    left: (identifier)
-    right: (continuation_section)))
-
-================================================================================
-Empty continuation
-================================================================================
-
-empty := (
-)
-
---------------------------------------------------------------------------------
-
-(source_file
-  (assignment_expression
-    left: (identifier)
-    right: (continuation_section)))
+    right: (function_call
+      name: (identifier)
+      (argument_list
+        (identifier)
+        (identifier)))))

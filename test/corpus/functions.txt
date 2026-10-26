@@ -180,7 +180,7 @@ myFunc(file := someVar "\someString.json")
 Function with ByRef parameter
 ================================================================================
 
-MyFunc(ByRef x) {
+MyFunc(&x) {
 }
 
 --------------------------------------------------------------------------------
@@ -197,7 +197,7 @@ MyFunc(ByRef x) {
 Function with multiple ByRef parameters
 ================================================================================
 
-MyFunc(ByRef x, y, ByRef z) {
+MyFunc(&x, y, &z) {
 }
 
 --------------------------------------------------------------------------------
@@ -219,7 +219,7 @@ MyFunc(ByRef x, y, ByRef z) {
 Function with ByRef parameter and default value
 ================================================================================
 
-MyFunc(ByRef x := 10) {
+MyFunc(&x := 10) {
 }
 
 --------------------------------------------------------------------------------
@@ -237,7 +237,7 @@ MyFunc(ByRef x := 10) {
 Function with mixed parameters
 ================================================================================
 
-MyFunc(ByRef x, y := "test", ByRef z := 0) {
+MyFunc(&x, y := "test", &z := 0) {
 }
 
 --------------------------------------------------------------------------------
@@ -261,7 +261,7 @@ MyFunc(ByRef x, y := "test", ByRef z := 0) {
 Function call vs ByRef parameter (disambiguation)
 ================================================================================
 
-MyFunc(ByRef x) {
+MyFunc(&x) {
 }
 
 MyFunc(x)

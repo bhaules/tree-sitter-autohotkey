@@ -71,7 +71,7 @@ Multi-line hotstring does not capture next line
 ================================================================================
 
 :x:now::
-MsgBox, hello
+MsgBox("hello")
 
 --------------------------------------------------------------------------------
 
@@ -79,10 +79,10 @@ MsgBox, hello
   (hotstring_definition
     options: (hotstring_options)
     trigger: (hotstring_trigger))
-  (command
+  (function_call
     name: (identifier)
-    (command_arguments
-      (identifier))))
+    (argument_list
+      (string))))
 
 ================================================================================
 Hotstring with cre options (case, raw, execute)

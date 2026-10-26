@@ -98,12 +98,12 @@ try {
 
 ================================================================================
 Catch without exception variable
-================================================================================
+===============================================================================
 
 try {
     x := 1
 } catch {
-    MsgBox, Error
+    MsgBox("Error")
 }
 
 --------------------------------------------------------------------------------
@@ -118,10 +118,10 @@ try {
     (catch_clause
       body: (statement_block
         (block
-          (command
+          (function_call
             name: (identifier)
-            (command_arguments
-              (identifier))))))))
+            (argument_list
+              (string))))))))
 
 ================================================================================
 Nested try blocks
@@ -152,7 +152,7 @@ try {
             exception: (identifier)
             body: (statement_block
               (block
-                (keyword)))))))
+                (throw_statement)))))))
     (catch_clause
       exception: (identifier)
       body: (statement_block
@@ -193,3 +193,31 @@ SafeCall() {
                 (boolean))))))
       (return_statement
         (boolean)))))
+
+================================================================================
+Catch with typed error and exception variable
+================================================================================
+
+try {
+    Risky()
+} catch TypeError as err {
+    Handle(err)
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (try_statement
+    body: (statement_block
+      (block
+        (function_call
+          name: (identifier))))
+    (catch_clause
+      type: (identifier)
+      exception: (identifier)
+      body: (statement_block
+        (block
+          (function_call
+            name: (identifier)
+            (argument_list
+              (identifier))))))))

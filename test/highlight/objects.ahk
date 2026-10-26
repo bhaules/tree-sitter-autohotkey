@@ -21,12 +21,11 @@ obj := {outer: {inner: 1}}
 ;       ^^^^^ property
 ;               ^^^^^ property
 
-; New expression
-instance := new MyClass()
-;           ^^^ keyword
-;               ^^^^^^^ type
+; Class instantiation
+instance := MyClass()
+;           ^^^^^^^ function
 
-; New expression with arguments
-obj := new Namespace.ClassName(arg1, arg2)
-;      ^^^ keyword
-;                    ^^^^^^^^^ type
+; Method call on class
+obj := Namespace.ClassName(arg1, arg2)
+;      ^^^^^^^^^ type
+;                ^^^^^^^^^ function.method

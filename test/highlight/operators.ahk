@@ -1,111 +1,111 @@
-; Assignment operators
-x := 1
-; ^ operator
+﻿; Assignment operators
+a := 1
+; <- variable
+;   ^^ operator
 
-x += 1
-; ^ operator
+b += 2
+;  ^^ operator
 
-x -= 1
-; ^ operator
+c -= 3
+;  ^^ operator
 
-x *= 2
-; ^ operator
+d *= 4
+;  ^^ operator
 
-x /= 2
-; ^ operator
+e /= 5
+;  ^^ operator
 
-x .= "text"
-; ^ operator
+f .= "text"
+;  ^^ operator
 
-; Arithmetic operators
-result := a + b
-;           ^ operator
+g ??= "default"
+;  ^^^ operator
 
-result := a - b
-;           ^ operator
-
-result := a * b
-;           ^ operator
-
-result := a / b
-;           ^ operator
-
-result := a // b
-;           ^^ operator
-
-result := a % b
-;           ^ operator
-
-result := a ** b
-;           ^^ operator
-
-; Logical operators
-result := a && b
-;           ^^ operator
-
-result := a || b
-;           ^^ operator
-
-result := a and b
-; Note: 'and', 'or', 'not' are case-insensitive and not specifically highlighted
-
-result := a or b
-
-; Unary operators
-result := !x
-;         ^ operator
-
-result := not x
-
-result := ~x
-;         ^ operator
-
-result := -x
-;         ^ operator
+h ||= "fallback"
+;  ^^^ operator
 
 ; Comparison operators
-result := a == b
+equal := a == b
+;          ^^ operator
+
+notEqual := a != b
+;             ^^ operator
+
+greater := a > b
+;            ^ operator
+
+less := a < b
+;         ^ operator
+
+greaterEq := a >= b
+;              ^^ operator
+
+lessEq := a <= b
 ;           ^^ operator
 
-result := a != b
+; Arithmetic operators
+sum := 1 + 2
+;        ^ operator
+
+diff := 5 - 3
+;         ^ operator
+
+prod := 4 * 2
+;         ^ operator
+
+quot := 10 / 2
+;          ^ operator
+
+intDiv := 10 // 3
+;            ^^ operator
+
+power := 2 ** 8
 ;           ^^ operator
 
-result := a <> b
+modulo := 10 % 3
+;            ^ operator
+
+; Logical operators
+both := a && b
+;         ^^ operator
+
+either := a || b
 ;           ^^ operator
 
-result := a < b
-;           ^ operator
+negated := !a
+;          ^ operator
 
-result := a > b
-;           ^ operator
-
-result := a <= b
-;           ^^ operator
-
-result := a >= b
-;           ^^ operator
+nullable := a ?? b
+;             ^^ operator
 
 ; Bitwise operators
-result := a | b
+bitAnd := a & b
 ;           ^ operator
 
-result := a & b
+bitOr := a | b
+;          ^ operator
+
+bitXor := a ^ b
 ;           ^ operator
 
-result := a ^ b
-;           ^ operator
+bitNot := ~a
+;         ^ operator
 
-result := a << b
+shiftR := a >> 2
 ;           ^^ operator
 
-result := a >> b
+shiftL := a << 2
 ;           ^^ operator
 
 ; Ternary operator
-result := x ? "yes" : "no"
-;           ^ operator
+result := condition ? "yes" : "no"
 ;                   ^ operator
+;                           ^ operator
 
-; Concatenation operator
-result := a . b
-;           ^ operator
+; Concatenation
+combined := a . b
+;             ^ operator
+
+; Fat-arrow
+fn := (x) => x + 1
+;          ^^ operator

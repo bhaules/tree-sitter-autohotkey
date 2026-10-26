@@ -16,10 +16,6 @@
           "named": true
         },
         {
-          "type": "base_expression",
-          "named": true
-        },
-        {
           "type": "binary_expression",
           "named": true
         },
@@ -29,6 +25,10 @@
         },
         {
           "type": "concatenation_expression",
+          "named": true
+        },
+        {
+          "type": "fat_arrow_function",
           "named": true
         },
         {
@@ -52,10 +52,6 @@
           "named": true
         },
         {
-          "type": "new_expression",
-          "named": true
-        },
-        {
           "type": "number",
           "named": true
         },
@@ -69,6 +65,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "super_expression",
           "named": true
         },
         {
@@ -107,10 +107,6 @@
           "named": true
         },
         {
-          "type": "base_expression",
-          "named": true
-        },
-        {
           "type": "binary_expression",
           "named": true
         },
@@ -120,6 +116,10 @@
         },
         {
           "type": "concatenation_expression",
+          "named": true
+        },
+        {
+          "type": "fat_arrow_function",
           "named": true
         },
         {
@@ -143,10 +143,6 @@
           "named": true
         },
         {
-          "type": "new_expression",
-          "named": true
-        },
-        {
           "type": "number",
           "named": true
         },
@@ -160,6 +156,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "super_expression",
           "named": true
         },
         {
@@ -208,6 +208,10 @@
         "required": true,
         "types": [
           {
+            "type": "&&=",
+            "named": false
+          },
+          {
             "type": "*=",
             "named": false
           },
@@ -230,6 +234,14 @@
           {
             "type": ":=",
             "named": false
+          },
+          {
+            "type": "??=",
+            "named": false
+          },
+          {
+            "type": "||=",
+            "named": false
           }
         ]
       },
@@ -246,10 +258,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -262,7 +270,7 @@
             "named": true
           },
           {
-            "type": "continuation_section",
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -286,10 +294,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -303,6 +307,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -342,10 +350,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -355,6 +359,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -378,10 +386,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -395,6 +399,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -428,10 +436,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -441,6 +445,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -464,10 +472,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -481,6 +485,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -532,10 +540,6 @@
           "named": true
         },
         {
-          "type": "command",
-          "named": true
-        },
-        {
           "type": "comment",
           "named": true
         },
@@ -548,7 +552,7 @@
           "named": true
         },
         {
-          "type": "drive_letter",
+          "type": "fat_arrow_function",
           "named": true
         },
         {
@@ -564,26 +568,6 @@
           "named": true
         },
         {
-          "type": "gui_action",
-          "named": true
-        },
-        {
-          "type": "gui_action_spaced",
-          "named": true
-        },
-        {
-          "type": "gui_options",
-          "named": true
-        },
-        {
-          "type": "gui_options_spaced",
-          "named": true
-        },
-        {
-          "type": "gui_target",
-          "named": true
-        },
-        {
           "type": "hotkey",
           "named": true
         },
@@ -596,19 +580,11 @@
           "named": true
         },
         {
-          "type": "if_command",
-          "named": true
-        },
-        {
           "type": "if_directive",
           "named": true
         },
         {
           "type": "if_statement",
-          "named": true
-        },
-        {
-          "type": "if_win_directive",
           "named": true
         },
         {
@@ -640,11 +616,15 @@
           "named": true
         },
         {
-          "type": "operator",
+          "type": "parenthesized_expression",
           "named": true
         },
         {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "statement_block",
           "named": true
         },
         {
@@ -653,6 +633,10 @@
         },
         {
           "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "throw_statement",
           "named": true
         },
         {
@@ -701,10 +685,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -714,6 +694,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -737,10 +721,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -754,6 +734,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -815,10 +799,6 @@
             "named": true
           },
           {
-            "type": "command",
-            "named": true
-          },
-          {
             "type": "comment",
             "named": true
           },
@@ -831,7 +811,7 @@
             "named": true
           },
           {
-            "type": "drive_letter",
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -847,26 +827,6 @@
             "named": true
           },
           {
-            "type": "gui_action",
-            "named": true
-          },
-          {
-            "type": "gui_action_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_options",
-            "named": true
-          },
-          {
-            "type": "gui_options_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_target",
-            "named": true
-          },
-          {
             "type": "hotkey",
             "named": true
           },
@@ -879,19 +839,11 @@
             "named": true
           },
           {
-            "type": "if_command",
-            "named": true
-          },
-          {
             "type": "if_directive",
             "named": true
           },
           {
             "type": "if_statement",
-            "named": true
-          },
-          {
-            "type": "if_win_directive",
             "named": true
           },
           {
@@ -923,7 +875,7 @@
             "named": true
           },
           {
-            "type": "operator",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -943,6 +895,10 @@
             "named": true
           },
           {
+            "type": "throw_statement",
+            "named": true
+          },
+          {
             "type": "try_statement",
             "named": true
           },
@@ -957,6 +913,16 @@
         ]
       },
       "exception": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
         "multiple": false,
         "required": false,
         "types": [
@@ -1066,10 +1032,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -1079,6 +1041,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -1102,10 +1068,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -1119,6 +1081,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -1139,91 +1105,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "command",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "command_arguments",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "command_arguments",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "drive_letter",
-          "named": true
-        },
-        {
-          "type": "force_expression",
-          "named": true
-        },
-        {
-          "type": "gui_action",
-          "named": true
-        },
-        {
-          "type": "gui_action_spaced",
-          "named": true
-        },
-        {
-          "type": "gui_option_flag",
-          "named": true
-        },
-        {
-          "type": "gui_options",
-          "named": true
-        },
-        {
-          "type": "gui_options_spaced",
-          "named": true
-        },
-        {
-          "type": "gui_target",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "variable_ref",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -1345,10 +1226,6 @@
           "named": true
         },
         {
-          "type": "command",
-          "named": true
-        },
-        {
           "type": "comment",
           "named": true
         },
@@ -1361,7 +1238,7 @@
           "named": true
         },
         {
-          "type": "drive_letter",
+          "type": "fat_arrow_function",
           "named": true
         },
         {
@@ -1377,26 +1254,6 @@
           "named": true
         },
         {
-          "type": "gui_action",
-          "named": true
-        },
-        {
-          "type": "gui_action_spaced",
-          "named": true
-        },
-        {
-          "type": "gui_options",
-          "named": true
-        },
-        {
-          "type": "gui_options_spaced",
-          "named": true
-        },
-        {
-          "type": "gui_target",
-          "named": true
-        },
-        {
           "type": "hotkey",
           "named": true
         },
@@ -1409,19 +1266,11 @@
           "named": true
         },
         {
-          "type": "if_command",
-          "named": true
-        },
-        {
           "type": "if_directive",
           "named": true
         },
         {
           "type": "if_statement",
-          "named": true
-        },
-        {
-          "type": "if_win_directive",
           "named": true
         },
         {
@@ -1453,7 +1302,7 @@
           "named": true
         },
         {
-          "type": "operator",
+          "type": "parenthesized_expression",
           "named": true
         },
         {
@@ -1473,6 +1322,10 @@
           "named": true
         },
         {
+          "type": "throw_statement",
+          "named": true
+        },
+        {
           "type": "try_statement",
           "named": true
         },
@@ -1482,6 +1335,118 @@
         },
         {
           "type": "while_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "fat_arrow_function",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "array_literal",
+            "named": true
+          },
+          {
+            "type": "assignment_expression",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
+            "named": true
+          },
+          {
+            "type": "function_call",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "index_expression",
+            "named": true
+          },
+          {
+            "type": "member_expression",
+            "named": true
+          },
+          {
+            "type": "method_call",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object_literal",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
+            "named": true
+          },
+          {
+            "type": "ternary_expression",
+            "named": true
+          },
+          {
+            "type": "this_expression",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "variable_ref",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "parameter_list",
           "named": true
         }
       ]
@@ -1516,10 +1481,6 @@
             "named": true
           },
           {
-            "type": "command",
-            "named": true
-          },
-          {
             "type": "comment",
             "named": true
           },
@@ -1532,7 +1493,7 @@
             "named": true
           },
           {
-            "type": "drive_letter",
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -1548,26 +1509,6 @@
             "named": true
           },
           {
-            "type": "gui_action",
-            "named": true
-          },
-          {
-            "type": "gui_action_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_options",
-            "named": true
-          },
-          {
-            "type": "gui_options_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_target",
-            "named": true
-          },
-          {
             "type": "hotkey",
             "named": true
           },
@@ -1580,19 +1521,11 @@
             "named": true
           },
           {
-            "type": "if_command",
-            "named": true
-          },
-          {
             "type": "if_directive",
             "named": true
           },
           {
             "type": "if_statement",
-            "named": true
-          },
-          {
-            "type": "if_win_directive",
             "named": true
           },
           {
@@ -1624,7 +1557,7 @@
             "named": true
           },
           {
-            "type": "operator",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -1641,6 +1574,10 @@
           },
           {
             "type": "switch_statement",
+            "named": true
+          },
+          {
+            "type": "throw_statement",
             "named": true
           },
           {
@@ -1688,10 +1625,6 @@
             "named": true
           },
           {
-            "type": "command",
-            "named": true
-          },
-          {
             "type": "comment",
             "named": true
           },
@@ -1704,7 +1637,7 @@
             "named": true
           },
           {
-            "type": "drive_letter",
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -1720,26 +1653,6 @@
             "named": true
           },
           {
-            "type": "gui_action",
-            "named": true
-          },
-          {
-            "type": "gui_action_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_options",
-            "named": true
-          },
-          {
-            "type": "gui_options_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_target",
-            "named": true
-          },
-          {
             "type": "hotkey",
             "named": true
           },
@@ -1752,19 +1665,11 @@
             "named": true
           },
           {
-            "type": "if_command",
-            "named": true
-          },
-          {
             "type": "if_directive",
             "named": true
           },
           {
             "type": "if_statement",
-            "named": true
-          },
-          {
-            "type": "if_win_directive",
             "named": true
           },
           {
@@ -1796,7 +1701,7 @@
             "named": true
           },
           {
-            "type": "operator",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -1813,6 +1718,10 @@
           },
           {
             "type": "switch_statement",
+            "named": true
+          },
+          {
+            "type": "throw_statement",
             "named": true
           },
           {
@@ -1842,10 +1751,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -1855,6 +1760,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -1878,10 +1787,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -1895,6 +1800,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -1935,101 +1844,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "force_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "array_literal",
-          "named": true
-        },
-        {
-          "type": "assignment_expression",
-          "named": true
-        },
-        {
-          "type": "base_expression",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean",
-          "named": true
-        },
-        {
-          "type": "concatenation_expression",
-          "named": true
-        },
-        {
-          "type": "force_expr_start",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "member_expression",
-          "named": true
-        },
-        {
-          "type": "method_call",
-          "named": true
-        },
-        {
-          "type": "new_expression",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "object_literal",
-          "named": true
-        },
-        {
-          "type": "parenthesized_expression",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "ternary_expression",
-          "named": true
-        },
-        {
-          "type": "this_expression",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        },
-        {
-          "type": "variable_ref",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2095,126 +1909,6 @@
     }
   },
   {
-    "type": "gui_action",
-    "named": true,
-    "fields": {
-      "action": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "gui_name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "gui_action_spaced",
-    "named": true,
-    "fields": {
-      "action": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "gui_name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "gui_options",
-    "named": true,
-    "fields": {
-      "gui_name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "option": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "gui_option_flag",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "gui_options_spaced",
-    "named": true,
-    "fields": {
-      "gui_name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      },
-      "option": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "gui_option_flag",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "gui_target",
-    "named": true,
-    "fields": {
-      "gui_name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "hotstring_definition",
     "named": true,
     "fields": {
@@ -2251,77 +1945,19 @@
     }
   },
   {
-    "type": "if_command",
-    "named": true,
-    "fields": {
-      "alternative": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "else_clause",
-            "named": true
-          }
-        ]
-      },
-      "consequence": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "statement_block",
-            "named": true
-          }
-        ]
-      },
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "command_arguments",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "if_directive",
     "named": true,
     "fields": {
       "condition": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
-          {
-            "type": "&&",
-            "named": false
-          },
-          {
-            "type": "and",
-            "named": false
-          },
           {
             "type": "array_literal",
             "named": true
           },
           {
             "type": "assignment_expression",
-            "named": true
-          },
-          {
-            "type": "base_expression",
             "named": true
           },
           {
@@ -2334,6 +1970,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -2357,10 +1997,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -2369,15 +2005,15 @@
             "named": true
           },
           {
-            "type": "or",
-            "named": false
-          },
-          {
             "type": "parenthesized_expression",
             "named": true
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -2395,10 +2031,6 @@
           {
             "type": "variable_ref",
             "named": true
-          },
-          {
-            "type": "||",
-            "named": false
           }
         ]
       }
@@ -2469,10 +2101,6 @@
             "named": true
           },
           {
-            "type": "command",
-            "named": true
-          },
-          {
             "type": "comment",
             "named": true
           },
@@ -2485,7 +2113,7 @@
             "named": true
           },
           {
-            "type": "drive_letter",
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -2501,26 +2129,6 @@
             "named": true
           },
           {
-            "type": "gui_action",
-            "named": true
-          },
-          {
-            "type": "gui_action_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_options",
-            "named": true
-          },
-          {
-            "type": "gui_options_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_target",
-            "named": true
-          },
-          {
             "type": "hotkey",
             "named": true
           },
@@ -2533,19 +2141,11 @@
             "named": true
           },
           {
-            "type": "if_command",
-            "named": true
-          },
-          {
             "type": "if_directive",
             "named": true
           },
           {
             "type": "if_statement",
-            "named": true
-          },
-          {
-            "type": "if_win_directive",
             "named": true
           },
           {
@@ -2577,7 +2177,7 @@
             "named": true
           },
           {
-            "type": "operator",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -2597,6 +2197,10 @@
             "named": true
           },
           {
+            "type": "throw_statement",
+            "named": true
+          },
+          {
             "type": "try_statement",
             "named": true
           },
@@ -2610,72 +2214,6 @@
           }
         ]
       }
-    }
-  },
-  {
-    "type": "if_win_directive",
-    "named": true,
-    "fields": {
-      "text": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "if_win_text",
-            "named": true
-          }
-        ]
-      },
-      "title": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "if_win_title",
-            "named": true
-          }
-        ]
-      },
-      "type": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "if_win_type",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "if_win_text",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "string",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "if_win_title",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "string",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2695,10 +2233,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -2708,6 +2242,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -2731,10 +2269,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -2748,6 +2282,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -2773,10 +2311,6 @@
         "required": true,
         "types": [
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "identifier",
             "named": true
           },
@@ -2786,6 +2320,10 @@
           },
           {
             "type": "member_expression",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -2856,10 +2394,6 @@
             "named": true
           },
           {
-            "type": "command",
-            "named": true
-          },
-          {
             "type": "comment",
             "named": true
           },
@@ -2872,7 +2406,7 @@
             "named": true
           },
           {
-            "type": "drive_letter",
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -2888,26 +2422,6 @@
             "named": true
           },
           {
-            "type": "gui_action",
-            "named": true
-          },
-          {
-            "type": "gui_action_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_options",
-            "named": true
-          },
-          {
-            "type": "gui_options_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_target",
-            "named": true
-          },
-          {
             "type": "hotkey",
             "named": true
           },
@@ -2920,19 +2434,11 @@
             "named": true
           },
           {
-            "type": "if_command",
-            "named": true
-          },
-          {
             "type": "if_directive",
             "named": true
           },
           {
             "type": "if_statement",
-            "named": true
-          },
-          {
-            "type": "if_win_directive",
             "named": true
           },
           {
@@ -2964,7 +2470,7 @@
             "named": true
           },
           {
-            "type": "operator",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -2981,6 +2487,10 @@
           },
           {
             "type": "switch_statement",
+            "named": true
+          },
+          {
+            "type": "throw_statement",
             "named": true
           },
           {
@@ -3037,15 +2547,15 @@
         "required": true,
         "types": [
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "identifier",
             "named": true
           },
           {
             "type": "member_expression",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -3089,15 +2599,15 @@
         "required": true,
         "types": [
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "identifier",
             "named": true
           },
           {
             "type": "member_expression",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -3155,36 +2665,6 @@
     }
   },
   {
-    "type": "new_expression",
-    "named": true,
-    "fields": {
-      "arguments": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "argument_list",
-            "named": true
-          }
-        ]
-      },
-      "class": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "member_expression",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "number",
     "named": true,
     "fields": {}
@@ -3239,10 +2719,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -3252,6 +2728,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -3275,10 +2755,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -3292,6 +2768,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -3315,11 +2795,6 @@
     }
   },
   {
-    "type": "operator",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "parameter",
     "named": true,
     "fields": {
@@ -3336,10 +2811,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -3349,6 +2820,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -3372,10 +2847,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -3389,6 +2860,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -3428,6 +2903,16 @@
             "named": true
           }
         ]
+      },
+      "variadic": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parameter_variadic",
+            "named": true
+          }
+        ]
       }
     }
   },
@@ -3463,10 +2948,6 @@
           "named": true
         },
         {
-          "type": "base_expression",
-          "named": true
-        },
-        {
           "type": "binary_expression",
           "named": true
         },
@@ -3476,6 +2957,10 @@
         },
         {
           "type": "concatenation_expression",
+          "named": true
+        },
+        {
+          "type": "fat_arrow_function",
           "named": true
         },
         {
@@ -3499,10 +2984,6 @@
           "named": true
         },
         {
-          "type": "new_expression",
-          "named": true
-        },
-        {
           "type": "number",
           "named": true
         },
@@ -3516,6 +2997,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "super_expression",
           "named": true
         },
         {
@@ -3554,10 +3039,6 @@
           "named": true
         },
         {
-          "type": "base_expression",
-          "named": true
-        },
-        {
           "type": "binary_expression",
           "named": true
         },
@@ -3567,6 +3048,10 @@
         },
         {
           "type": "concatenation_expression",
+          "named": true
+        },
+        {
+          "type": "fat_arrow_function",
           "named": true
         },
         {
@@ -3590,10 +3075,6 @@
           "named": true
         },
         {
-          "type": "new_expression",
-          "named": true
-        },
-        {
           "type": "number",
           "named": true
         },
@@ -3607,6 +3088,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "super_expression",
           "named": true
         },
         {
@@ -3658,10 +3143,6 @@
           "named": true
         },
         {
-          "type": "command",
-          "named": true
-        },
-        {
           "type": "comment",
           "named": true
         },
@@ -3674,7 +3155,7 @@
           "named": true
         },
         {
-          "type": "drive_letter",
+          "type": "fat_arrow_function",
           "named": true
         },
         {
@@ -3690,26 +3171,6 @@
           "named": true
         },
         {
-          "type": "gui_action",
-          "named": true
-        },
-        {
-          "type": "gui_action_spaced",
-          "named": true
-        },
-        {
-          "type": "gui_options",
-          "named": true
-        },
-        {
-          "type": "gui_options_spaced",
-          "named": true
-        },
-        {
-          "type": "gui_target",
-          "named": true
-        },
-        {
           "type": "hotkey",
           "named": true
         },
@@ -3722,19 +3183,11 @@
           "named": true
         },
         {
-          "type": "if_command",
-          "named": true
-        },
-        {
           "type": "if_directive",
           "named": true
         },
         {
           "type": "if_statement",
-          "named": true
-        },
-        {
-          "type": "if_win_directive",
           "named": true
         },
         {
@@ -3766,11 +3219,15 @@
           "named": true
         },
         {
-          "type": "operator",
+          "type": "parenthesized_expression",
           "named": true
         },
         {
           "type": "return_statement",
+          "named": true
+        },
+        {
+          "type": "statement_block",
           "named": true
         },
         {
@@ -3779,6 +3236,10 @@
         },
         {
           "type": "switch_statement",
+          "named": true
+        },
+        {
+          "type": "throw_statement",
           "named": true
         },
         {
@@ -3832,7 +3293,7 @@
     "fields": {
       "value": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "array_literal",
@@ -3840,10 +3301,6 @@
           },
           {
             "type": "assignment_expression",
-            "named": true
-          },
-          {
-            "type": "base_expression",
             "named": true
           },
           {
@@ -3856,6 +3313,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -3879,10 +3340,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -3896,6 +3353,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -3949,10 +3410,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -3962,6 +3419,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -3985,10 +3446,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -4002,6 +3459,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -4035,10 +3496,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -4048,6 +3505,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -4071,10 +3532,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -4088,6 +3545,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -4121,10 +3582,6 @@
             "named": true
           },
           {
-            "type": "base_expression",
-            "named": true
-          },
-          {
             "type": "binary_expression",
             "named": true
           },
@@ -4134,6 +3591,10 @@
           },
           {
             "type": "concatenation_expression",
+            "named": true
+          },
+          {
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -4157,10 +3618,6 @@
             "named": true
           },
           {
-            "type": "new_expression",
-            "named": true
-          },
-          {
             "type": "number",
             "named": true
           },
@@ -4174,6 +3631,10 @@
           },
           {
             "type": "string",
+            "named": true
+          },
+          {
+            "type": "super_expression",
             "named": true
           },
           {
@@ -4194,6 +3655,97 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "throw_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "array_literal",
+          "named": true
+        },
+        {
+          "type": "assignment_expression",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "concatenation_expression",
+          "named": true
+        },
+        {
+          "type": "fat_arrow_function",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "index_expression",
+          "named": true
+        },
+        {
+          "type": "member_expression",
+          "named": true
+        },
+        {
+          "type": "method_call",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "object_literal",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "super_expression",
+          "named": true
+        },
+        {
+          "type": "ternary_expression",
+          "named": true
+        },
+        {
+          "type": "this_expression",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "variable_ref",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4225,10 +3777,6 @@
             "named": true
           },
           {
-            "type": "command",
-            "named": true
-          },
-          {
             "type": "comment",
             "named": true
           },
@@ -4241,7 +3789,7 @@
             "named": true
           },
           {
-            "type": "drive_letter",
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -4257,26 +3805,6 @@
             "named": true
           },
           {
-            "type": "gui_action",
-            "named": true
-          },
-          {
-            "type": "gui_action_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_options",
-            "named": true
-          },
-          {
-            "type": "gui_options_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_target",
-            "named": true
-          },
-          {
             "type": "hotkey",
             "named": true
           },
@@ -4289,19 +3817,11 @@
             "named": true
           },
           {
-            "type": "if_command",
-            "named": true
-          },
-          {
             "type": "if_directive",
             "named": true
           },
           {
             "type": "if_statement",
-            "named": true
-          },
-          {
-            "type": "if_win_directive",
             "named": true
           },
           {
@@ -4333,7 +3853,7 @@
             "named": true
           },
           {
-            "type": "operator",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -4350,6 +3870,10 @@
           },
           {
             "type": "switch_statement",
+            "named": true
+          },
+          {
+            "type": "throw_statement",
             "named": true
           },
           {
@@ -4399,10 +3923,6 @@
           "named": true
         },
         {
-          "type": "base_expression",
-          "named": true
-        },
-        {
           "type": "binary_expression",
           "named": true
         },
@@ -4412,6 +3932,10 @@
         },
         {
           "type": "concatenation_expression",
+          "named": true
+        },
+        {
+          "type": "fat_arrow_function",
           "named": true
         },
         {
@@ -4435,10 +3959,6 @@
           "named": true
         },
         {
-          "type": "new_expression",
-          "named": true
-        },
-        {
           "type": "number",
           "named": true
         },
@@ -4452,6 +3972,10 @@
         },
         {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "super_expression",
           "named": true
         },
         {
@@ -4517,10 +4041,6 @@
             "named": true
           },
           {
-            "type": "command",
-            "named": true
-          },
-          {
             "type": "comment",
             "named": true
           },
@@ -4533,7 +4053,7 @@
             "named": true
           },
           {
-            "type": "drive_letter",
+            "type": "fat_arrow_function",
             "named": true
           },
           {
@@ -4549,26 +4069,6 @@
             "named": true
           },
           {
-            "type": "gui_action",
-            "named": true
-          },
-          {
-            "type": "gui_action_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_options",
-            "named": true
-          },
-          {
-            "type": "gui_options_spaced",
-            "named": true
-          },
-          {
-            "type": "gui_target",
-            "named": true
-          },
-          {
             "type": "hotkey",
             "named": true
           },
@@ -4581,19 +4081,11 @@
             "named": true
           },
           {
-            "type": "if_command",
-            "named": true
-          },
-          {
             "type": "if_directive",
             "named": true
           },
           {
             "type": "if_statement",
-            "named": true
-          },
-          {
-            "type": "if_win_directive",
             "named": true
           },
           {
@@ -4625,7 +4117,7 @@
             "named": true
           },
           {
-            "type": "operator",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
@@ -4642,6 +4134,10 @@
           },
           {
             "type": "switch_statement",
+            "named": true
+          },
+          {
+            "type": "throw_statement",
             "named": true
           },
           {
@@ -4696,6 +4192,10 @@
   },
   {
     "type": "&&",
+    "named": false
+  },
+  {
+    "type": "&&=",
     "named": false
   },
   {
@@ -4799,15 +4299,15 @@
     "named": false
   },
   {
-    "type": "<>",
-    "named": false
-  },
-  {
     "type": "=",
     "named": false
   },
   {
     "type": "==",
+    "named": false
+  },
+  {
+    "type": "=>",
     "named": false
   },
   {
@@ -4827,6 +4327,30 @@
     "named": false
   },
   {
+    "type": "??",
+    "named": false
+  },
+  {
+    "type": "??=",
+    "named": false
+  },
+  {
+    "type": "Files",
+    "named": false
+  },
+  {
+    "type": "Parse",
+    "named": false
+  },
+  {
+    "type": "Read",
+    "named": false
+  },
+  {
+    "type": "Reg",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -4843,8 +4367,8 @@
     "named": false
   },
   {
-    "type": "base_expression",
-    "named": true
+    "type": "as",
+    "named": false
   },
   {
     "type": "break",
@@ -4863,10 +4387,6 @@
     "named": false
   },
   {
-    "type": "continuation_section",
-    "named": true
-  },
-  {
     "type": "continue",
     "named": false
   },
@@ -4876,10 +4396,6 @@
   },
   {
     "type": "directive_arguments",
-    "named": true
-  },
-  {
-    "type": "drive_letter",
     "named": true
   },
   {
@@ -4911,24 +4427,12 @@
     "named": false
   },
   {
-    "type": "force_expr_start",
-    "named": true
-  },
-  {
     "type": "global",
-    "named": false
-  },
-  {
-    "type": "gosub",
     "named": false
   },
   {
     "type": "goto",
     "named": false
-  },
-  {
-    "type": "gui_option_flag",
-    "named": true
   },
   {
     "type": "hotkey",
@@ -4955,10 +4459,6 @@
     "named": false
   },
   {
-    "type": "if_win_type",
-    "named": true
-  },
-  {
     "type": "in",
     "named": false
   },
@@ -4975,10 +4475,6 @@
     "named": true
   },
   {
-    "type": "new",
-    "named": false
-  },
-  {
     "type": "not",
     "named": false
   },
@@ -4988,6 +4484,10 @@
   },
   {
     "type": "parameter_modifier",
+    "named": true
+  },
+  {
+    "type": "parameter_variadic",
     "named": true
   },
   {
@@ -5011,6 +4511,10 @@
     "named": false
   },
   {
+    "type": "super_expression",
+    "named": true
+  },
+  {
     "type": "switch",
     "named": false
   },
@@ -5031,6 +4535,10 @@
     "named": false
   },
   {
+    "type": "unset",
+    "named": false
+  },
+  {
     "type": "while",
     "named": false
   },
@@ -5044,6 +4552,10 @@
   },
   {
     "type": "||",
+    "named": false
+  },
+  {
+    "type": "||=",
     "named": false
   },
   {

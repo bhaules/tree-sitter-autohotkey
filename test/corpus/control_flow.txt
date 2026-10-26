@@ -375,7 +375,7 @@ if (x) {
 Loop parse variant
 ================================================================================
 
-loop, parse, InputVar
+loop parse, InputVar
 {
     result .= field
 }
@@ -396,7 +396,7 @@ loop, parse, InputVar
 Loop files variant
 ================================================================================
 
-loop, files, *.txt
+loop files, *.txt
 {
     count += 1
 }
@@ -417,7 +417,7 @@ loop, files, *.txt
 Loop read variant
 ================================================================================
 
-loop, read, input.txt
+loop read, input.txt
 {
     result .= line
 }
@@ -438,7 +438,7 @@ loop, read, input.txt
 Loop reg variant
 ================================================================================
 
-loop, reg, HKEY_LOCAL_MACHINE
+loop reg, HKEY_LOCAL_MACHINE
 {
     count += 1
 }
@@ -459,7 +459,7 @@ loop, reg, HKEY_LOCAL_MACHINE
 Loop parse braceless
 ================================================================================
 
-loop, parse, text
+loop parse, text
     result .= field
 
 --------------------------------------------------------------------------------
@@ -571,9 +571,9 @@ switch statement basic
 
 switch x {
     case 1:
-        MsgBox, One
+        MsgBox("One")
     default:
-        MsgBox, Other
+        MsgBox("Other")
 }
 
 --------------------------------------------------------------------------------
@@ -584,16 +584,16 @@ switch x {
     (case_clause
       values: (number)
       (block
-        (command
+        (function_call
           name: (identifier)
-          (command_arguments
-            (identifier)))))
+          (argument_list
+            (string)))))
     (default_clause
       (block
-        (command
+        (function_call
           name: (identifier)
-          (command_arguments
-            (identifier)))))))
+          (argument_list
+            (string)))))))
 
 ================================================================================
 switch with parenthesized expression
@@ -623,9 +623,9 @@ switch with multiple case values
 
 switch x {
     case 1, 2, 3:
-        MsgBox, Small
+        MsgBox("Small")
     case 4, 5:
-        MsgBox, Medium
+        MsgBox("Medium")
 }
 
 --------------------------------------------------------------------------------
@@ -638,18 +638,18 @@ switch x {
       values: (number)
       values: (number)
       (block
-        (command
+        (function_call
           name: (identifier)
-          (command_arguments
-            (identifier)))))
+          (argument_list
+            (string)))))
     (case_clause
       values: (number)
       values: (number)
       (block
-        (command
+        (function_call
           name: (identifier)
-          (command_arguments
-            (identifier)))))))
+          (argument_list
+            (string)))))))
 
 ================================================================================
 switch with string cases
@@ -661,7 +661,7 @@ switch action {
     case "load":
         Load()
     default:
-        MsgBox, Unknown
+        MsgBox("Unknown")
 }
 
 --------------------------------------------------------------------------------
@@ -681,10 +681,10 @@ switch action {
           name: (identifier))))
     (default_clause
       (block
-        (command
+        (function_call
           name: (identifier)
-          (command_arguments
-            (identifier)))))))
+          (argument_list
+            (string)))))))
 
 ================================================================================
 Return without value
@@ -761,7 +761,7 @@ Return followed by label
 return
 
 MyLabel:
-    MsgBox, Hello
+    MsgBox("Hello")
 return
 
 --------------------------------------------------------------------------------
@@ -770,37 +770,37 @@ return
   (return_statement)
   (label
     name: (identifier))
-  (command
+  (function_call
     name: (identifier)
-    (command_arguments
-      (identifier)))
+    (argument_list
+      (string)))
   (return_statement))
 
 ================================================================================
-Return followed by command
+Return followed by function call
 ================================================================================
 
 return
-PostMessage, 0xA1, 2
+PostMessage(0xA1, 2)
 
 --------------------------------------------------------------------------------
 
 (source_file
   (return_statement)
-  (command
+  (function_call
     name: (identifier)
-    (command_arguments
+    (argument_list
       (number)
       (number))))
 
 ================================================================================
-Return followed by command inside function
+Return followed by function call inside function
 ================================================================================
 
 MyFunc() {
     if (condition)
         return
-    PostMessage, 0xA1, 2
+    PostMessage(0xA1, 2)
 }
 
 --------------------------------------------------------------------------------
@@ -813,9 +813,9 @@ MyFunc() {
         condition: (parenthesized_expression
           (identifier))
         consequence: (return_statement))
-      (command
+      (function_call
         name: (identifier)
-        (command_arguments
+        (argument_list
           (number)
           (number))))))
 

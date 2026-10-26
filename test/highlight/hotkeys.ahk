@@ -1,4 +1,4 @@
-; Simple hotkey with Win modifier
+﻿; Simple hotkey with Win modifier
 #n::
 ; <- keyword
 
@@ -14,14 +14,10 @@
 ^+!#x::
 ; <- keyword
 
-; Hotkey with command
-#n::Run, notepad.exe
+; Hotkey with block (v2 prefers {})
+#n:: {
 ; <- keyword
-
-; Hotkey with block
-#m:: {
-; <- keyword
-    MsgBox, Hello
+    MsgBox("hello")
 }
 
 ; Function key hotkey

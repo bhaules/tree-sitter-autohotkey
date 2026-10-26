@@ -1,6 +1,4 @@
-; Braceless control flow - keywords on same line to avoid comments becoming body
-; Testing that keywords highlight correctly in braceless forms
-
+﻿; Braceless control flow
 if (x) y := 1
 ; <- keyword
 
@@ -19,19 +17,19 @@ if (x) a := 1 else b := 2
 ; <- keyword
 ;             ^^^^ keyword
 
-; Loop variants with comma syntax
-loop, parse, InputVar
+; Loop variants (v2 syntax - no comma prefix)
+loop parse InputVar, ","
 ; <- keyword
 ;     ^^^^^ keyword
 
-loop, files, *.txt
+loop files "*.txt"
 ; <- keyword
 ;     ^^^^^ keyword
 
-loop, read, input.txt
+loop read "input.txt"
 ; <- keyword
 ;     ^^^^ keyword
 
-loop, reg, HKEY_LOCAL_MACHINE
+loop reg "HKEY_LOCAL_MACHINE"
 ; <- keyword
 ;     ^^^ keyword
